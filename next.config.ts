@@ -9,6 +9,7 @@ const withPWA = withPWAInit({
   register: true,
   skipWaiting: true,
   publicExcludes: ['!robots.txt', '!sitemap.xml'],
+  disable: !isProd, // Enabled only in production
   manifest: {
     name: 'Habit Hacker',
     short_name: 'HabitHacker',
