@@ -1,0 +1,10 @@
+{
+  "morning": [
+    { "id": "1", "text": "We have reached the morning and at this very time all sovereignty is due to Allah, and all praise is for Allah. There is no god but Allah, alone, without partner. To Him belongs all sovereignty and praise and He is over all things omnipotent." },
+    { "id": "2", "text": "O Allah, by You we enter the morning and by You we enter the evening, by You we live and by You we die, and to You is the resurrection." }
+  ],
+  "evening": [
+    { "id": "1", "text": "We have reached the evening and at this very time all sovereignty is due to Allah, and all praise is for Allah. There is no god but Allah, alone, without partner. To Him belongs all sovereignty and praise and He is over all things omnipotent." },
+    { "id": "2", "text": "O Allah, by You we enter the evening and by You we enter the morning, by You we live and by You we die, and to You is the final return." }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "morning": [
+    { "id": "1", "text": "Nous avons atteint le matin et en ce moment même, toute la souveraineté appartient à Allah, et toutes les louanges sont à Allah. Il n'y a de divinité qu'Allah, seul, sans associé. À Lui appartiennent la souveraineté et la louange et Il est omnipotent." },
+    { "id": "2", "text": "Ô Allah, par Toi nous entrons dans le matin et par Toi nous entrons dans le soir, par Toi nous vivons et par Toi nous mourons, et vers Toi est la résurrection." }
+  ],
+  "evening": [
+    { "id": "1", "text": "Nous avons atteint le soir et en ce moment même, toute la souveraineté appartient à Allah, et toutes les louanges sont à Allah. Il n'y a de divinité qu'Allah, seul, sans associé. À Lui appartiennent la souveraineté et la louange et Il est omnipotent." },
+    { "id": "2", "text": "Ô Allah, par Toi nous entrons dans le soir et par Toi nous entrons dans le matin, par Toi nous vivons et par Toi nous mourons, et vers Toi est le retour final." }
+  ]
+}

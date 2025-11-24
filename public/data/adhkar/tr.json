@@ -1,0 +1,10 @@
+{
+  "morning": [
+    { "id": "1", "text": "Sabaha ulaştık ve bu anda bütün mülk Allah'ındır, hamd Allah'adır. Allah'tan başka ilah yoktur, O tektir, ortağı yoktur. Mülk ve hamd O'nundur ve O her şeye kadirdir." },
+    { "id": "2", "text": "Allah'ım, Seninle sabaha girdik, Seninle akşama girdik, Seninle yaşarız, Seninle ölürüz ve dönüş Sanadır." }
+  ],
+  "evening": [
+    { "id": "1", "text": "Akşama ulaştık ve bu anda bütün mülk Allah'ındır, hamd Allah'adır. Allah'tan başka ilah yoktur, O tektir, ortağı yoktur. Mülk ve hamd O'nundur ve O her şeye kadirdir." },
+    { "id": "2", "text": "Allah'ım, Seninle akşama girdik, Seninle sabaha girdik, Seninle yaşarız, Seninle ölürüz ve son dönüş Sanadır." }
+  ]
+}

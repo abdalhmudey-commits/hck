@@ -1,0 +1,10 @@
+{
+  "morning": [
+    { "id": "1", "text": "Kami telah mencapai pagi dan pada saat ini semua kedaulatan adalah milik Allah, dan segala puji bagi Allah. Tiada tuhan selain Allah, sendiri, tanpa sekutu. Milik-Nya segala kedaulatan dan pujian dan Dia Maha Kuasa atas segala sesuatu." },
+    { "id": "2", "text": "Ya Allah, dengan-Mu kami memasuki pagi dan dengan-Mu kami memasuki petang, dengan-Mu kami hidup dan dengan-Mu kami mati, dan kepada-Mu lah kebangkitan." }
+  ],
+  "evening": [
+    { "id": "1", "text": "Kami telah mencapai petang dan pada saat ini semua kedaulatan adalah milik Allah, dan segala puji bagi Allah. Tiada tuhan selain Allah, sendiri, tanpa sekutu. Milik-Nya segala kedaulatan dan pujian dan Dia Maha Kuasa atas segala sesuatu." },
+    { "id": "2", "text": "Ya Allah, dengan-Mu kami memasuki petang dan dengan-Mu kami memasuki pagi, dengan-Mu kami hidup dan dengan-Mu kami mati, dan kepada-Mu lah kepulangan terakhir." }
+  ]
+}
