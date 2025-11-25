@@ -5,6 +5,7 @@ import { AppHeader } from '@/components/layout/app-header';
 import { BottomNav } from '@/components/layout/bottom-nav';
 import { Toaster } from '@/components/ui/toaster';
 import { cn } from '@/lib/utils';
+import { RegisterSW } from './register-sw';
 
 const APP_NAME = "Habit Hacker";
 const APP_DESCRIPTION = "PWA to hack your habits, with Islamic and cultural content.";
@@ -21,6 +22,7 @@ export const metadata: Metadata = {
   formatDetection: {
     telephone: false,
   },
+  manifest: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/manifest.json`,
 };
 
 export const viewport: Viewport = {
@@ -51,6 +53,7 @@ export default function RootLayout({
           </div>
           <Toaster />
         </AppProviders>
+        <RegisterSW />
       </body>
     </html>
   );
