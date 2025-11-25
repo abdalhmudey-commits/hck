@@ -1,22 +1,6 @@
-const withPWAInit = require("@ducanh2912/next-pwa");
 
 const repoName = 'hck';
 const isProd = process.env.NODE_ENV === 'production';
-
-const withPWA = withPWAInit({
-  dest: 'public',
-  disable: !isProd,
-  register: true,
-  skipWaiting: true,
-  publicExcludes: ['!robots.txt', '!sitemap.xml'],
-  cacheOnFrontEndNav: true,
-  aggressiveFrontEndNavCaching: true,
-  reloadOnOnline: true,
-  swcMinify: true,
-  workboxOptions: {
-    disableDevLogs: true,
-  },
-});
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -57,4 +41,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withPWA(nextConfig);
+module.exports = nextConfig;
