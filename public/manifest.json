@@ -1,6 +1,6 @@
 {
   "name": "Habit Hacker",
-  "short_name": "Habit Hacker",
+  "short_name": "HabitHacker",
   "description": "PWA to hack your habits, with Islamic and cultural content.",
   "lang": "ar",
   "dir": "rtl",
@@ -9,8 +9,11 @@
   "id": "/hck/",
   "background_color": "#F5F5F5",
   "theme_color": "#A0D2EB",
+  "display_override": [
+    "fullscreen",
+    "standalone"
+  ],
   "display": "fullscreen",
-  "display_override": ["fullscreen", "standalone"],
   "icons": [
     {
       "src": "https://placehold.co/192x192.png",
@@ -27,19 +30,26 @@
   ],
   "screenshots": [
     {
-      "src": "https://placehold.co/1080x1920.png?text=Habits",
+      "src": "https://placehold.co/1080x1920.png",
       "sizes": "1080x1920",
       "type": "image/png",
-      "form_factor": "narrow"
+      "form_factor": "narrow",
+      "label": "Habit Tracking"
     },
     {
-      "src": "https://placehold.co/1080x1920.png?text=Adhkar",
+      "src": "https://placehold.co/1080x1920.png",
       "sizes": "1080x1920",
       "type": "image/png",
-      "form_factor": "narrow"
+      "form_factor": "narrow",
+      "label": "Adhkar and Summaries"
     }
   ],
-  "categories": ["lifestyle", "health", "productivity"],
+  "categories": [
+    "lifestyle",
+    "health",
+    "productivity",
+    "education"
+  ],
   "prefer_related_applications": false,
   "shortcuts": [
     {
@@ -50,14 +60,14 @@
       "icons": [{ "src": "https://placehold.co/96x96.png", "sizes": "96x96" }]
     },
     {
-      "name": "Morning & Evening Adhkar",
+      "name": "Adhkar",
       "short_name": "Adhkar",
-      "description": "Read morning and evening remembrances",
+      "description": "Read morning and evening Adhkar",
       "url": "/hck/adhkar",
       "icons": [{ "src": "https://placehold.co/96x96.png", "sizes": "96x96" }]
     },
     {
-      "name": "Book Summaries",
+      "name": "Summaries",
       "short_name": "Summaries",
       "description": "Read book summaries",
       "url": "/hck/summaries",
@@ -70,14 +80,13 @@
   "share_target": {
     "action": "/hck/add-habit-from-share",
     "method": "GET",
-    "enctype": "application/x-www-form-urlencoded",
     "params": {
       "title": "name",
       "text": "description"
     }
   },
   "note_taking": {
-    "new_note_url": "/hck/new-habit",
-    "needs_user_activation": true
+    "new_note_url": "/hck/",
+    "needs_multipart": true
   }
 }
