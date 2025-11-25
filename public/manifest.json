@@ -1,25 +1,74 @@
 {
   "name": "Habit Hacker",
-  "short_name": "Habit Hacker",
+  "short_name": "Habits",
   "description": "PWA to hack your habits, with Islamic and cultural content.",
-  "lang": "ar",
-  "dir": "rtl",
+  "id": "/hck/",
   "start_url": "/hck/",
   "scope": "/hck/",
-  "id": "/hck/",
   "display": "fullscreen",
-  "display_override": ["fullscreen", "standalone"],
-  "theme_color": "#A0D2EB",
+  "display_override": [
+    "fullscreen",
+    "standalone"
+  ],
   "background_color": "#F5F5F5",
+  "theme_color": "#A0D2EB",
+  "orientation": "portrait-primary",
+  "lang": "ar",
+  "dir": "rtl",
+  "categories": [
+    "lifestyle",
+    "health",
+    "productivity",
+    "education"
+  ],
+  "iarc_rating_id": "e84b072d-4548-4726-a323-253c54b7b72b",
+  "prefer_related_applications": false,
+  "related_applications": [],
   "icons": [
     {
-      "src": "https://placehold.co/192x192.png",
+      "src": "https://placehold.co/72x72/A0D2EB/FFFFFF/png?text=Habit",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://placehold.co/96x96/A0D2EB/FFFFFF/png?text=Habit",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://placehold.co/128x128/A0D2EB/FFFFFF/png?text=Habit",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://placehold.co/144x144/A0D2EB/FFFFFF/png?text=Habit",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://placehold.co/152x152/A0D2EB/FFFFFF/png?text=Habit",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://placehold.co/192x192/A0D2EB/FFFFFF/png?text=Habit",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "https://placehold.co/512x512.png",
+      "src": "https://placehold.co/384x384/A0D2EB/FFFFFF/png?text=Habit",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://placehold.co/512x512/A0D2EB/FFFFFF/png?text=Habit",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
@@ -27,56 +76,39 @@
   ],
   "screenshots": [
     {
-      "src": "https://placehold.co/1080x1920.png?text=Screenshot+1",
+      "src": "https://placehold.co/1080x1920/A0D2EB/FFFFFF/png?text=Screenshot+1",
       "sizes": "1080x1920",
       "type": "image/png",
       "form_factor": "narrow"
     },
     {
-      "src": "https://placehold.co/1080x1920.png?text=Screenshot+2",
-      "sizes": "1080x1920",
-      "type": "image/png",
-      "form_factor": "narrow"
-    },
-    {
-      "src": "https://placehold.co/1280x720.png?text=Wide+Screenshot+1",
-      "sizes": "1280x720",
+      "src": "https://placehold.co/1920x1080/A0D2EB/FFFFFF/png?text=Screenshot+2",
+      "sizes": "1920x1080",
       "type": "image/png",
       "form_factor": "wide"
     }
   ],
-  "categories": [
-    "lifestyle",
-    "health",
-    "productivity"
-  ],
-  "iarc_rating_id": "e5f8f3c8-e869-4563-a3b4-178331b3a6d4",
-  "related_applications": [],
-  "prefer_related_applications": false,
   "shortcuts": [
     {
       "name": "Habits",
       "short_name": "Habits",
       "description": "View your habits",
       "url": "/hck/",
-      "icons": [{ "src": "https://placehold.co/96x96.png", "sizes": "96x96" }]
+      "icons": [{ "src": "https://placehold.co/96x96/A0D2EB/FFFFFF/png?text=Habits", "sizes": "96x96" }]
     },
     {
       "name": "Adhkar",
       "short_name": "Adhkar",
-      "description": "View daily Adhkar",
+      "description": "View Adhkar",
       "url": "/hck/adhkar",
-      "icons": [{ "src": "https://placehold.co/96x96.png", "sizes": "96x96" }]
+      "icons": [{ "src": "https://placehold.co/96x96/90EE90/FFFFFF/png?text=Adhkar", "sizes": "96x96" }]
     },
     {
       "name": "Summaries",
       "short_name": "Summaries",
-      "description": "Read summaries",
+      "description": "View book summaries",
       "url": "/hck/summaries",
-      "icons": [{ "src": "https://placehold.co/96x96.png", "sizes": "96x96" }]
+      "icons": [{ "src": "https://placehold.co/96x96/D2B48C/FFFFFF/png?text=Books", "sizes": "96x96" }]
     }
-  ],
-  "launch_handler": {
-    "client_mode": "navigate-existing"
-  }
+  ]
 }
