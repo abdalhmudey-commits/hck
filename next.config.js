@@ -1,5 +1,4 @@
-import type { NextConfig } from 'next';
-import withPWAInit from '@ducanh2912/next-pwa';
+const withPWAInit = require("@ducanh2912/next-pwa");
 
 const repoName = 'hck';
 const isProd = process.env.NODE_ENV === 'production';
@@ -19,7 +18,8 @@ const withPWA = withPWAInit({
   },
 });
 
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   output: 'export',
   basePath: isProd ? `/${repoName}` : '',
   assetPrefix: isProd ? `/${repoName}/` : '',
@@ -57,4 +57,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withPWA(nextConfig);
+module.exports = withPWA(nextConfig);
