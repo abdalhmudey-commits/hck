@@ -1,6 +1,7 @@
+
 import withPWAInit from 'next-pwa';
 
-const repoName = 'new';
+const repoName = 'adatna';
 const isProd = process.env.NODE_ENV === 'production';
 
 const withPWA = withPWAInit({
