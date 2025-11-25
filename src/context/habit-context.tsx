@@ -31,12 +31,14 @@ const getIntervalInMs = (frequency: number, timeUnit: 'minutes' | 'hours' | 'day
 
 export const HabitProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [habits, setHabits, isHabitsHydrated] = useLocalStorage<Habit[]>('habits', []);
-  const { notificationsEnabled, requestPermission, setNotificationsEnabled } = useNotifications();
-  const { language } = useLanguage();
+  const { notificationsEnabled, requestPermission, setNotificationsEnabled, isNotificationsHydrated } = useNotifications();
+  const { language, isHydrated: isLanguageHydrated } = useLanguage();
   const intervalIds = useRef<NodeJS.Timeout[]>([]);
+  const isReady = isHabitsHydrated && isLanguageHydrated && isNotificationsHydrated;
 
   // Effect to sync notification permission on initial load
   useEffect(() => {
+    if (!isNotificationsHydrated) return;
     if (typeof window !== 'undefined' && 'Notification' in window) {
       if (Notification.permission === 'granted') {
         setNotificationsEnabled(true);
@@ -44,7 +46,7 @@ export const HabitProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         setNotificationsEnabled(false);
       }
     }
-  }, [setNotificationsEnabled]);
+  }, [setNotificationsEnabled, isNotificationsHydrated]);
 
 
   const addHabit = async (habit: Omit<Habit, 'id' | 'createdAt'>) => {
@@ -74,7 +76,7 @@ export const HabitProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     intervalIds.current.forEach(clearInterval);
     intervalIds.current = [];
 
-    if (notificationsEnabled && isHabitsHydrated) {
+    if (isReady && notificationsEnabled) {
         habits.forEach(habit => {
             const intervalMs = getIntervalInMs(habit.frequency, habit.timeUnit);
             const intervalId = setInterval(async () => {
@@ -109,7 +111,7 @@ export const HabitProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     return () => {
       intervalIds.current.forEach(clearInterval);
     };
-  }, [habits, notificationsEnabled, language.code, isHabitsHydrated]);
+  }, [habits, notificationsEnabled, language.code, isReady]);
 
   return (
     <HabitContext.Provider value={{ habits, addHabit, deleteHabit, isHabitsHydrated }}>
