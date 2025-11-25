@@ -1,3 +1,4 @@
+
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { AppProviders } from '@/components/providers/app-providers';
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
   icons: {
     icon: `${BASE_PATH}/favicon.ico`,
     shortcut: `${BASE_PATH}/favicon.ico`,
-    apple: `${BASE_PATH}/icons/icon-192x192.png`,
+    apple: "https://picsum.photos/seed/hck-apple/192/192",
   }
 };
 
