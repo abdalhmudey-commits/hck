@@ -1,11 +1,10 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
+import React, { createContext, useContext, useEffect, useRef } from 'react';
 import type { Habit } from '@/lib/types';
 import { useLocalStorage } from '@/hooks/use-local-storage';
 import { useNotifications } from './notifications-context';
 import { useLanguage } from './language-context';
-import { translateHabitReminder } from '@/ai/flows/translate-habit-reminder';
 
 interface HabitContextType {
   habits: Habit[];
@@ -32,7 +31,7 @@ const getIntervalInMs = (frequency: number, timeUnit: 'minutes' | 'hours' | 'day
 export const HabitProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [habits, setHabits, isHabitsHydrated] = useLocalStorage<Habit[]>('habits', []);
   const { notificationsEnabled, requestPermission, setNotificationsEnabled, isNotificationsHydrated } = useNotifications();
-  const { language, isHydrated: isLanguageHydrated } = useLanguage();
+  const { isHydrated: isLanguageHydrated } = useLanguage();
   const intervalIds = useRef<NodeJS.Timeout[]>([]);
   const isReady = isHabitsHydrated && isLanguageHydrated && isNotificationsHydrated;
 
@@ -81,23 +80,10 @@ export const HabitProvider: React.FC<{ children: React.ReactNode }> = ({ childre
             const intervalMs = getIntervalInMs(habit.frequency, habit.timeUnit);
             const intervalId = setInterval(async () => {
               if (habit.reminderType === 'text' && habit.reminderMessage) {
-                try {
-                  const { translatedText } = await translateHabitReminder({
-                    text: habit.reminderMessage,
-                    language: language.code,
-                  });
-                  new Notification(habit.name, {
-                    body: translatedText,
-                    icon: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/icons/icon-192x192.png`,
-                  });
-                } catch (error) {
-                  console.error('Failed to translate and send notification:', error);
-                  // Fallback to original message
                   new Notification(habit.name, {
                     body: habit.reminderMessage,
                     icon: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/icons/icon-192x192.png`,
                   });
-                }
               } else if (habit.reminderType === 'audio' && habit.audioSrc) {
                 const audio = new Audio(habit.audioSrc);
                 audio.play();
@@ -111,7 +97,7 @@ export const HabitProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     return () => {
       intervalIds.current.forEach(clearInterval);
     };
-  }, [habits, notificationsEnabled, language.code, isReady]);
+  }, [habits, notificationsEnabled, isReady]);
 
   return (
     <HabitContext.Provider value={{ habits, addHabit, deleteHabit, isHabitsHydrated }}>
