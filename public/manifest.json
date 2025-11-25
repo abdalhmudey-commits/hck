@@ -1,92 +1,157 @@
 {
   "name": "Habit Hacker",
-  "short_name": "Habits",
+  "short_name": "HabitHacker",
   "description": "PWA to hack your habits, with Islamic and cultural content.",
-  "start_url": "/hck/",
-  "display": "fullscreen",
+  "start_url": ".",
+  "display": "standalone",
   "display_override": [
     "fullscreen",
     "standalone"
   ],
-  "scope": "/hck/",
-  "id": "/hck/",
+  "orientation": "portrait",
   "background_color": "#F5F5F5",
   "theme_color": "#A0D2EB",
-  "orientation": "portrait",
   "lang": "ar",
   "dir": "rtl",
+  "scope": "/",
+  "id": "/?source=pwa",
   "categories": [
     "lifestyle",
     "health",
-    "productivity"
+    "productivity",
+    "education"
   ],
-  "iarc_rating_id": "e84b072d-4548-472a-a681-97a15629471c",
+  "iarc_rating_id": "e84b072d-446a-4467-a8b6-b5f7b2b6a3b1",
   "prefer_related_applications": false,
   "related_applications": [],
+  "handle_links": "preferred",
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "scope_extensions": [
+    {
+      "origin": "hck.github.io"
+    }
+  ],
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "protocol_handlers": [
+    {
+      "protocol": "web+habit",
+      "url": "/new?habit=%s"
+    }
+  ],
+  "share_target": {
+    "action": "/new",
+    "method": "GET",
+    "params": {
+      "title": "name",
+      "text": "description"
+    }
+  },
   "shortcuts": [
     {
-      "name": "Habits",
+      "name": "My Habits",
       "short_name": "Habits",
-      "description": "View your habits",
-      "url": "/hck/",
+      "description": "View your tracked habits",
+      "url": "/",
       "icons": [
         {
-          "src": "https://placehold.co/192x192.png",
-          "sizes": "192x192"
+          "src": "icons/icon-96x96.png",
+          "sizes": "96x96"
         }
       ]
     },
     {
-      "name": "Adhkar",
+      "name": "Morning and Evening Adhkar",
       "short_name": "Adhkar",
-      "description": "View morning and evening Adhkar",
-      "url": "/hck/adhkar",
+      "description": "Read morning and evening remembrances",
+      "url": "/adhkar",
       "icons": [
         {
-          "src": "https://placehold.co/192x192.png",
-          "sizes": "192x192"
+          "src": "icons/icon-96x96.png",
+          "sizes": "96x96"
         }
       ]
     },
     {
-      "name": "Summaries",
+      "name": "Book Summaries",
       "short_name": "Summaries",
       "description": "Read book summaries",
-      "url": "/hck/summaries",
+      "url": "/summaries",
       "icons": [
         {
-          "src": "https://placehold.co/192x192.png",
-          "sizes": "192x192"
+          "src": "icons/icon-96x96.png",
+          "sizes": "96x96"
         }
       ]
     }
   ],
+  "screenshots": [
+    {
+      "src": "screenshots/screenshot1.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "platform": "narrow",
+      "label": "Homescreen with habits list"
+    },
+    {
+      "src": "screenshots/screenshot2.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "platform": "narrow",
+      "label": "Adhkar (Remembrances) screen"
+    },
+    {
+      "src": "screenshots/screenshot3.png",
+      "sizes": "1280x800",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "Book summaries screen"
+    }
+  ],
   "icons": [
     {
-      "src": "https://placehold.co/192x192.png",
+      "src": "icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "https://placehold.co/512x512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "https://placehold.co/1080x1920.png",
-      "sizes": "1080x1920",
-      "type": "image/png",
-      "form_factor": "narrow"
+      "src": "icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
     },
     {
-      "src": "https://placehold.co/1280x720.png",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "form_factor": "wide"
+      "src": "icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ]
 }
