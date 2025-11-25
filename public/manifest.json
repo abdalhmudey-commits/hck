@@ -2,11 +2,13 @@
   "name": "Habit Hacker",
   "short_name": "HabitHacker",
   "description": "PWA to hack your habits, with Islamic and cultural content.",
-  "theme_color": "#A0D2EB",
-  "background_color": "#F5F5F5",
-  "display": "fullscreen",
-  "scope": "/hck/",
+  "id": "/hck/",
   "start_url": "/hck/",
+  "scope": "/hck/",
+  "display": "fullscreen",
+  "background_color": "#F5F5F5",
+  "theme_color": "#A0D2EB",
+  "orientation": "portrait-primary",
   "icons": [
     {
       "src": "https://placehold.co/192x192.png",
@@ -19,6 +21,20 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "https://placehold.co/1080x1920.png?text=Screenshot+1",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "https://placehold.co/1080x1920.png?text=Screenshot+2",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow"
     }
   ]
 }
