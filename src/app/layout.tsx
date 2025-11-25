@@ -9,6 +9,7 @@ import { RegisterSW } from './register-sw';
 
 const APP_NAME = "Habit Hacker";
 const APP_DESCRIPTION = "PWA to hack your habits, with Islamic and cultural content.";
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
 export const metadata: Metadata = {
   applicationName: APP_NAME,
@@ -22,7 +23,12 @@ export const metadata: Metadata = {
   formatDetection: {
     telephone: false,
   },
-  manifest: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/manifest.json`,
+  manifest: `${BASE_PATH}/manifest.json`,
+  icons: {
+    icon: `${BASE_PATH}/favicon.ico`,
+    shortcut: `${BASE_PATH}/favicon.ico`,
+    apple: `${BASE_PATH}/icons/icon-192x192.png`,
+  }
 };
 
 export const viewport: Viewport = {
