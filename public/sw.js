@@ -3,67 +3,63 @@ const urlsToCache = [
   '/',
   '/hck/',
   '/hck/manifest.json',
-  '/hck/index.html',
-  // Add other important assets here, especially those needed for the app shell
+  '/hck/favicon.ico',
+  '/hck/icons/icon-192x192.png',
+  '/hck/icons/icon-512x512.png',
+  '/hck/globals.css',
+  '/hck/app/layout.tsx',
+  '/hck/app/page.tsx',
+  // Add other important assets here. Note that Next.js might hash assets,
+  // so dynamically caching them during runtime might be a better approach for some files.
 ];
 
-self.addEventListener('install', (event) => {
+// Install a service worker
+self.addEventListener('install', event => {
   // Perform install steps
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then((cache) => {
+      .then(function(cache) {
         console.log('Opened cache');
-        // Add all URLs to cache, but don't fail the install if one fetch fails
-        // This is a "soft" caching strategy for the initial install.
-        const cachePromises = urlsToCache.map(urlToCache => {
-          return cache.add(urlToCache).catch(err => {
-            console.warn(`Failed to cache ${urlToCache}:`, err);
-          });
-        });
-        return Promise.all(cachePromises);
+        // Add all the assets to the cache
+        return cache.addAll(urlsToCache.map(url => new Request(url, { cache: 'reload' })));
+      })
+      .catch(err => {
+        console.error('Failed to open cache and add URLs:', err);
       })
   );
 });
 
-self.addEventListener('activate', (event) => {
-  const cacheWhitelist = [CACHE_NAME];
-  event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (cacheWhitelist.indexOf(cacheName) === -1) {
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    })
-  );
-});
-
-self.addEventListener('fetch', (event) => {
+// Cache and return requests
+self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)
-      .then((response) => {
+      .then(function(response) {
         // Cache hit - return response
         if (response) {
           return response;
         }
 
-        // Clone the request because it's a stream and can only be consumed once.
+        // IMPORTANT: Clone the request. A request is a stream and
+        // can only be consumed once. Since we are consuming this
+        // once by cache and once by the browser for fetch, we need
+        // to clone the response.
         const fetchRequest = event.request.clone();
 
         return fetch(fetchRequest).then(
-          (response) => {
+          function(response) {
             // Check if we received a valid response
-            if (!response || response.status !== 200 || response.type !== 'basic') {
+            if(!response || response.status !== 200 || response.type !== 'basic') {
               return response;
             }
 
-            // Clone the response because it's also a stream.
+            // IMPORTANT: Clone the response. A response is a stream
+            // and because we want the browser to consume the response
+            // as well as the cache consuming the response, we need
+            // to clone it so we have two streams.
             const responseToCache = response.clone();
 
             caches.open(CACHE_NAME)
-              .then((cache) => {
+              .then(function(cache) {
                 cache.put(event.request, responseToCache);
               });
 
@@ -71,5 +67,21 @@ self.addEventListener('fetch', (event) => {
           }
         );
       })
+    );
+});
+
+// Update a service worker
+self.addEventListener('activate', event => {
+  const cacheWhitelist = [CACHE_NAME];
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cacheName => {
+          if (cacheWhitelist.indexOf(cacheName) === -1) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
   );
 });
