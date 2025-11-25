@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useRef } from 'react';
+import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
 import type { Habit } from '@/lib/types';
 import { useLocalStorage } from '@/hooks/use-local-storage';
 import { useNotifications } from './notifications-context';
@@ -11,6 +11,7 @@ interface HabitContextType {
   habits: Habit[];
   addHabit: (habit: Omit<Habit, 'id' | 'createdAt'>) => void;
   deleteHabit: (id: string) => void;
+  isHabitsHydrated: boolean;
 }
 
 const HabitContext = createContext<HabitContextType | undefined>(undefined);
@@ -29,18 +30,31 @@ const getIntervalInMs = (frequency: number, timeUnit: 'minutes' | 'hours' | 'day
 }
 
 export const HabitProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [habits, setHabits] = useLocalStorage<Habit[]>('habits', []);
-  const { notificationsEnabled, requestPermission } = useNotifications();
+  const [habits, setHabits, isHabitsHydrated] = useLocalStorage<Habit[]>('habits', []);
+  const { notificationsEnabled, requestPermission, setNotificationsEnabled } = useNotifications();
   const { language } = useLanguage();
   const intervalIds = useRef<NodeJS.Timeout[]>([]);
 
+  // Effect to sync notification permission on initial load
+  useEffect(() => {
+    if (typeof window !== 'undefined' && 'Notification' in window) {
+      if (Notification.permission === 'granted') {
+        setNotificationsEnabled(true);
+      } else {
+        setNotificationsEnabled(false);
+      }
+    }
+  }, [setNotificationsEnabled]);
+
+
   const addHabit = async (habit: Omit<Habit, 'id' | 'createdAt'>) => {
-    if (!notificationsEnabled) {
-        const permissionGranted = await requestPermission();
-        if (!permissionGranted) {
-            // Optionally, handle the case where permission is denied
-            console.log("Notification permission denied. Habit added without reminders.");
-        }
+    let permissionGranted = notificationsEnabled;
+    if (!permissionGranted) {
+        permissionGranted = await requestPermission();
+    }
+
+    if (!permissionGranted) {
+      console.log("Notification permission denied. Habit added without reminders.");
     }
 
     const newHabit: Habit = {
@@ -48,7 +62,7 @@ export const HabitProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       id: Date.now().toString(),
       createdAt: Date.now(),
     };
-    setHabits([...habits, newHabit]);
+    setHabits((prevHabits) => [...prevHabits, newHabit]);
   };
 
   const deleteHabit = (id: string) => {
@@ -60,11 +74,11 @@ export const HabitProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     intervalIds.current.forEach(clearInterval);
     intervalIds.current = [];
 
-    if (notificationsEnabled) {
+    if (notificationsEnabled && isHabitsHydrated) {
         habits.forEach(habit => {
             const intervalMs = getIntervalInMs(habit.frequency, habit.timeUnit);
             const intervalId = setInterval(async () => {
-              if (habit.reminderType === 'text') {
+              if (habit.reminderType === 'text' && habit.reminderMessage) {
                 try {
                   const { translatedText } = await translateHabitReminder({
                     text: habit.reminderMessage,
@@ -95,10 +109,10 @@ export const HabitProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     return () => {
       intervalIds.current.forEach(clearInterval);
     };
-  }, [habits, notificationsEnabled, language.code]);
+  }, [habits, notificationsEnabled, language.code, isHabitsHydrated]);
 
   return (
-    <HabitContext.Provider value={{ habits, addHabit, deleteHabit }}>
+    <HabitContext.Provider value={{ habits, addHabit, deleteHabit, isHabitsHydrated }}>
       {children}
     </HabitContext.Provider>
   );

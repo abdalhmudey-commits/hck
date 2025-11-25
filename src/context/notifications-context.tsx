@@ -1,12 +1,13 @@
 'use client';
 
-import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
+import React, { createContext, useContext, useState, useCallback } from 'react';
 import { useLocalStorage } from '@/hooks/use-local-storage';
 import { useToast } from '@/hooks/use-toast';
 import { useLanguage } from './language-context';
 
 interface NotificationsContextType {
   notificationsEnabled: boolean;
+  setNotificationsEnabled: (value: boolean) => void;
   toggleNotifications: () => void;
   requestPermission: (showAlerts?: boolean) => Promise<boolean>;
 }
@@ -16,18 +17,10 @@ const NotificationsContext = createContext<NotificationsContextType | undefined>
 export const NotificationsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isEnabled, setIsEnabled] = useLocalStorage('notificationsEnabled', false);
   const { toast } = useToast();
-  const { t } = useLanguage();
-
-  useEffect(() => {
-    if (typeof window !== 'undefined' && 'Notification' in window) {
-      if (Notification.permission === 'granted' && !isEnabled) {
-        setIsEnabled(true);
-      }
-    }
-  }, [isEnabled, setIsEnabled]);
+  const { t, isHydrated } = useLanguage();
 
   const requestPermission = useCallback(async (showAlerts = true): Promise<boolean> => {
-    if (typeof window === 'undefined' || !('Notification' in window)) {
+    if (!isHydrated || typeof window === 'undefined' || !('Notification' in window)) {
       if (showAlerts) {
         toast({ title: t('notifications_not_supported_title'), description: t('notifications_not_supported_desc'), variant: 'destructive' });
       }
@@ -36,7 +29,7 @@ export const NotificationsProvider: React.FC<{ children: React.ReactNode }> = ({
     }
 
     if (Notification.permission === 'granted') {
-      if (!isEnabled) setIsEnabled(true);
+      setIsEnabled(true);
       return true;
     }
 
@@ -62,7 +55,7 @@ export const NotificationsProvider: React.FC<{ children: React.ReactNode }> = ({
       }
       return false;
     }
-  }, [setIsEnabled, toast, isEnabled, t]);
+  }, [setIsEnabled, toast, t, isHydrated]);
 
   const toggleNotifications = useCallback(async () => {
     if (!isEnabled) {
@@ -74,7 +67,7 @@ export const NotificationsProvider: React.FC<{ children: React.ReactNode }> = ({
   }, [isEnabled, requestPermission, setIsEnabled, toast, t]);
 
   return (
-    <NotificationsContext.Provider value={{ notificationsEnabled: isEnabled, toggleNotifications, requestPermission }}>
+    <NotificationsContext.Provider value={{ notificationsEnabled: isEnabled, setNotificationsEnabled: setIsEnabled, toggleNotifications, requestPermission }}>
       {children}
     </NotificationsContext.Provider>
   );

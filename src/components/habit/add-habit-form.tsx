@@ -15,6 +15,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Mic, Square, Trash2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Skeleton } from '../ui/skeleton';
 
 const formSchema = z.object({
   name: z.string().min(1, 'Habit name is required'),
@@ -29,7 +30,7 @@ type FormData = z.infer<typeof formSchema>;
 
 export function AddHabitForm() {
   const { addHabit } = useHabits();
-  const { t } = useLanguage();
+  const { t, isHydrated } = useLanguage();
   const { startRecording, stopRecording, resetRecording, recordingState, audioURL } = useRecorder();
   const [audioDataUrl, setAudioDataUrl] = useState<string | undefined>(undefined);
   const [isClient, setIsClient] = useState(false);
@@ -89,8 +90,25 @@ export function AddHabitForm() {
     resetRecording();
   };
 
-  if (!isClient) {
-    return null;
+  if (!isClient || !isHydrated) {
+    return (
+      <Card>
+        <CardHeader>
+          <Skeleton className="h-8 w-48" />
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="space-y-2">
+            <Skeleton className="h-5 w-24" />
+            <Skeleton className="h-10 w-full" />
+          </div>
+          <div className="space-y-2">
+            <Skeleton className="h-5 w-24" />
+            <Skeleton className="h-20 w-full" />
+          </div>
+          <Skeleton className="h-10 w-full" />
+        </CardContent>
+      </Card>
+    );
   }
 
   return (

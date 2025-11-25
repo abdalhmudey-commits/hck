@@ -3,20 +3,27 @@
 import { useHabits } from '@/context/habit-context';
 import { useLanguage } from '@/context/language-context';
 import { HabitItem } from './habit-item';
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { useEffect, useState } from 'react';
+import { Skeleton } from '../ui/skeleton';
 
 export function HabitList() {
-  const { habits } = useHabits();
-  const { t } = useLanguage();
+  const { habits, isHabitsHydrated } = useHabits();
+  const { t, isHydrated: isLanguageHydrated } = useLanguage();
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  if (!isClient) {
-    return null;
+  const isHydrated = isHabitsHydrated && isLanguageHydrated && isClient;
+
+  if (!isHydrated) {
+    return (
+       <div className="space-y-4">
+        <Skeleton className="h-40 w-full" />
+        <Skeleton className="h-40 w-full" />
+      </div>
+    )
   }
 
   if (habits.length === 0) {
