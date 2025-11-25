@@ -1,96 +1,90 @@
 {
-  "theme_color": "#A0D2EB",
-  "background_color": "#F5F5F5",
-  "display": "fullscreen",
-  "display_override": ["fullscreen", "standalone"],
-  "scope": "/hck/",
-  "start_url": "/hck/",
-  "id": "/hck/",
   "name": "Habit Hacker",
-  "short_name": "Habit Hacker",
+  "short_name": "Habits",
   "description": "PWA to hack your habits, with Islamic and cultural content.",
+  "start_url": "/hck/",
+  "display": "fullscreen",
+  "display_override": [
+    "fullscreen",
+    "standalone"
+  ],
+  "scope": "/hck/",
+  "id": "/hck/",
+  "background_color": "#F5F5F5",
+  "theme_color": "#A0D2EB",
+  "orientation": "portrait",
   "lang": "ar",
   "dir": "rtl",
-  "orientation": "portrait",
-  "categories": ["lifestyle", "health", "productivity"],
+  "categories": [
+    "lifestyle",
+    "health",
+    "productivity"
+  ],
+  "iarc_rating_id": "e84b072d-4548-472a-a681-97a15629471c",
   "prefer_related_applications": false,
   "related_applications": [],
-  "iarc_rating_id": "e84b072d-71b3-4d3e-86ae-31a8ce4e53b7",
-  "icons": [
-    {
-      "src": "/hck/icons/icon-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/hck/icons/icon-256x256.png",
-      "sizes": "256x256",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/hck/icons/icon-384x384.png",
-      "sizes": "384x384",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/hck/icons/icon-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
-  ],
   "shortcuts": [
     {
       "name": "Habits",
       "short_name": "Habits",
       "description": "View your habits",
       "url": "/hck/",
-      "icons": [{ "src": "/hck/icons/icon-192x192.png", "sizes": "192x192" }]
+      "icons": [
+        {
+          "src": "https://placehold.co/192x192.png",
+          "sizes": "192x192"
+        }
+      ]
     },
     {
       "name": "Adhkar",
       "short_name": "Adhkar",
-      "description": "View Adhkar",
+      "description": "View morning and evening Adhkar",
       "url": "/hck/adhkar",
-      "icons": [{ "src": "/hck/icons/icon-192x192.png", "sizes": "192x192" }]
+      "icons": [
+        {
+          "src": "https://placehold.co/192x192.png",
+          "sizes": "192x192"
+        }
+      ]
     },
     {
       "name": "Summaries",
       "short_name": "Summaries",
-      "description": "View book summaries",
+      "description": "Read book summaries",
       "url": "/hck/summaries",
-      "icons": [{ "src": "/hck/icons/icon-192x192.png", "sizes": "192x192" }]
+      "icons": [
+        {
+          "src": "https://placehold.co/192x192.png",
+          "sizes": "192x192"
+        }
+      ]
     }
   ],
-  "launch_handler": {
-    "client_mode": "navigate-existing"
-  },
-  "share_target": {
-    "action": "/hck/share-target",
-    "method": "GET",
-    "params": {
-      "title": "title",
-      "text": "text",
-      "url": "url"
+  "icons": [
+    {
+      "src": "https://placehold.co/192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://placehold.co/512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
-  },
-  "note_taking": {
-    "new_note_url": "/hck/new-note",
-    "needs_editing": true
-  },
+  ],
   "screenshots": [
     {
-      "src": "https://placehold.co/1080x1920/A0D2EB/FFFFFF/png?text=Habits",
+      "src": "https://placehold.co/1080x1920.png",
       "sizes": "1080x1920",
       "type": "image/png",
       "form_factor": "narrow"
     },
     {
-      "src": "https://placehold.co/1920x1080/A0D2EB/FFFFFF/png?text=Habit%20Hacker",
-      "sizes": "1920x1080",
+      "src": "https://placehold.co/1280x720.png",
+      "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide"
     }
