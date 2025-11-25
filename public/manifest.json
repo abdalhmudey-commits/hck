@@ -5,8 +5,8 @@
   "start_url": ".",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#A0D2EB",
   "theme_color": "#A0D2EB",
+  "background_color": "#F5F5F5",
   "id": "/?source=pwa",
   "icons": [
     {
