@@ -4,4 +4,5 @@ This is a NextJS starter in Firebase Studio.
 
 To get started, take a look at src/app/page.tsx.
 
-<!-- Trigger rebuild --># hck
+<!-- Triggering a new build after GitHub Pages settings update. --># hck
+g
