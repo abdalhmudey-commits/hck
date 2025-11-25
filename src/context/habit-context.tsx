@@ -65,6 +65,12 @@ export const HabitProvider: React.FC<{ children: React.ReactNode }> = ({ childre
             const intervalMs = getIntervalInMs(habit.frequency, habit.timeUnit);
             const intervalId = setInterval(async () => {
               if (habit.reminderType === 'text') {
+                // Temporarily disable translation to fix build error
+                new Notification(habit.name, {
+                  body: habit.reminderMessage,
+                  icon: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/icons/icon-192x192.png`,
+                });
+                /*
                 try {
                   const { translatedText } = await translateHabitReminder({
                     text: habit.reminderMessage,
@@ -82,6 +88,7 @@ export const HabitProvider: React.FC<{ children: React.ReactNode }> = ({ childre
                     icon: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/icons/icon-192x192.png`,
                   });
                 }
+                */
               } else if (habit.reminderType === 'audio' && habit.audioSrc) {
                 const audio = new Audio(habit.audioSrc);
                 audio.play();
