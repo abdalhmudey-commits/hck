@@ -16,7 +16,7 @@ import { useEffect, useState } from 'react';
 
 export function AppHeader() {
   const { setTheme, theme } = useTheme();
-  const { language, setLanguage, t } = useLanguage();
+  const { language, setLanguage, t, isHydrated } = useLanguage();
   const { notificationsEnabled, toggleNotifications } = useNotifications();
   const [isClient, setIsClient] = useState(false);
 
@@ -24,10 +24,25 @@ export function AppHeader() {
     setIsClient(true);
   }, []);
 
+  if (!isHydrated) {
+    return (
+     <header className="fixed top-0 left-0 right-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container flex h-14 max-w-screen-2xl items-center justify-between">
+          <h1 className="font-headline text-lg font-bold">Habit Hacker</h1>
+          <div className="flex items-center space-x-2">
+             <div className="h-9 w-9"></div>
+             <div className="h-9 w-9"></div>
+             <div className="h-9 w-9"></div>
+          </div>
+        </div>
+      </header>
+    );
+  }
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 max-w-screen-2xl items-center justify-between">
-        <h1 className="font-headline text-lg font-bold">{isClient ? t('app_title') : 'Habit Hacker'}</h1>
+        <h1 className="font-headline text-lg font-bold">{t('app_title')}</h1>
         <div className="flex items-center space-x-2">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -48,7 +63,7 @@ export function AppHeader() {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <Button variant="ghost" size="icon" onClick={toggleNotifications} aria-label={isClient ? (notificationsEnabled ? t('notifications_enabled') : t('notifications_disabled')) : 'Toggle notifications'}>
+          <Button variant="ghost" size="icon" onClick={toggleNotifications} aria-label={notificationsEnabled ? t('notifications_enabled') : t('notifications_disabled')}>
             {notificationsEnabled ? (
               <Bell className="h-[1.2rem] w-[1.2rem]" />
             ) : (

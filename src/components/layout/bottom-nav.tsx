@@ -5,17 +5,11 @@ import { usePathname } from 'next/navigation';
 import { Home, BookOpen, BookText } from 'lucide-react';
 import { useLanguage } from '@/context/language-context';
 import { cn } from '@/lib/utils';
-import { useEffect, useState } from 'react';
 
 export function BottomNav() {
   const pathname = usePathname();
-  const { t } = useLanguage();
+  const { t, isHydrated } = useLanguage();
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
   const navItems = [
     { href: '/', labelKey: 'nav_habits', icon: Home },
@@ -45,7 +39,7 @@ export function BottomNav() {
             )}
           >
             <item.icon className="mb-1 h-6 w-6" />
-            <span className="text-xs">{isClient ? t(item.labelKey) : item.labelKey.split('_')[1]}</span>
+            <span className="text-xs">{isHydrated ? t(item.labelKey) : item.labelKey.split('_')[1]}</span>
           </Link>
         )})}
       </div>

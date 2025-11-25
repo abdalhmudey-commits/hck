@@ -9,21 +9,22 @@ interface LanguageContextType {
   language: Language;
   setLanguage: (langCode: string) => void;
   t: (key: string) => string;
+  isHydrated: boolean;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [storedLangCode, setStoredLangCode] = useLocalStorage<string>('language', 'en');
-  const [language, setLanguageState] = useState<Language>(
-    SUPPORTED_LANGUAGES.find(l => l.code === storedLangCode) || SUPPORTED_LANGUAGES[0]
-  );
+  const [language, setLanguageState] = useState<Language>(SUPPORTED_LANGUAGES[0]);
+  const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
     const selectedLang = SUPPORTED_LANGUAGES.find(l => l.code === storedLangCode) || SUPPORTED_LANGUAGES[0];
     setLanguageState(selectedLang);
     document.documentElement.lang = selectedLang.code;
     document.documentElement.dir = selectedLang.dir;
+    setIsHydrated(true);
   }, [storedLangCode]);
 
   const setLanguage = (langCode: string) => {
@@ -31,11 +32,12 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   };
 
   const t = useCallback((key: string): string => {
+    if (!isHydrated) return '';
     return translations[language.code]?.[key] || translations['en']?.[key] || key;
-  }, [language.code]);
+  }, [language.code, isHydrated]);
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={{ language, setLanguage, t, isHydrated }}>
       {children}
     </LanguageContext.Provider>
   );
