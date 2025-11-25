@@ -2,65 +2,76 @@
   "name": "Habit Hacker",
   "short_name": "Habit Hacker",
   "description": "PWA to hack your habits, with Islamic and cultural content.",
-  "start_url": ".",
+  "start_url": "/hck/",
   "display": "standalone",
   "background_color": "#F5F5F5",
   "theme_color": "#A0D2EB",
   "icons": [
     {
-      "src": "icons/icon-72x72.png",
+      "src": "https://placehold.co/72x72/A0D2EB/FFFFFF?text=Habit",
       "sizes": "72x72",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "icons/icon-96x96.png",
+      "src": "https://placehold.co/96x96/A0D2EB/FFFFFF?text=Habit",
       "sizes": "96x96",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "icons/icon-128x128.png",
+      "src": "https://placehold.co/128x128/A0D2EB/FFFFFF?text=Habit",
       "sizes": "128x128",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "icons/icon-144x144.png",
+      "src": "https://placehold.co/144x144/A0D2EB/FFFFFF?text=Habit",
       "sizes": "144x144",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "icons/icon-152x152.png",
+      "src": "https://placehold.co/152x152/A0D2EB/FFFFFF?text=Habit",
       "sizes": "152x152",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "icons/icon-192x192.png",
+      "src": "https://placehold.co/192x192/A0D2EB/FFFFFF?text=Habit",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "icons/icon-384x384.png",
+      "src": "https://placehold.co/384x384/A0D2EB/FFFFFF?text=Habit",
       "sizes": "384x384",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "icons/icon-512x512.png",
+      "src": "https://placehold.co/512x512/A0D2EB/FFFFFF?text=Habit",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://placehold.co/192x192/A0D2EB/FFFFFF?text=Habit",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
-  "screenshots": [
+   "screenshots": [
     {
-      "src": "/screenshots/screenshot-1.png",
-      "type": "image/png",
+      "src": "https://placehold.co/1080x1920/A0D2EB/FFFFFF?text=Screenshot+1",
       "sizes": "1080x1920",
-      "form_factor": "narrow"
+      "type": "image/png"
     },
     {
-      "src": "/screenshots/screenshot-2.png",
-      "type": "image/png",
+      "src": "https://placehold.co/1080x1920/A0D2EB/FFFFFF?text=Screenshot+2",
       "sizes": "1080x1920",
-      "form_factor": "narrow"
+      "type": "image/png"
     }
   ]
 }
