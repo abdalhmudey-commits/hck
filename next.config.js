@@ -5,8 +5,8 @@ const isProd = process.env.NODE_ENV === 'production';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: isProd ? `/${repoName}` : '',
-  assetPrefix: isProd ? `/${repoName}/` : '',
+  // basePath and assetPrefix are removed to fix routing on GitHub Pages
+  // env var is kept for potential other uses, but not for base path
   env: {
     NEXT_PUBLIC_BASE_PATH: isProd ? `/${repoName}` : '',
   },
@@ -37,6 +37,12 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+          protocol: 'https',
+          hostname: 'storage.googleapis.com',
+          port: '',
+          pathname: '/**',
+      }
     ],
   },
 };
