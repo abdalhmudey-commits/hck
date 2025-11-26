@@ -5,20 +5,20 @@
   "start_url": ".",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "id": "/?source=pwa",
-  "background_color": "#A0D2EB",
+  "background_color": "#F5F5F5",
   "theme_color": "#A0D2EB",
+  "id": "/?source=pwa",
   "icons": [
     {
       "src": "https://storage.googleapis.com/material-design-icons/v4/png/black/android/192dp/1x/baseline_android_black_48dp.png",
-      "type": "image/png",
       "sizes": "192x192",
-      "purpose": "any"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "https://storage.googleapis.com/material-design-icons/v4/png/black/android/512dp/1x/baseline_android_black_48dp.png",
-      "type": "image/png",
       "sizes": "512x512",
+      "type": "image/png",
       "purpose": "any maskable"
     }
   ],
