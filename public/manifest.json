@@ -4,10 +4,10 @@
   "description": "PWA to hack your habits, with Islamic and cultural content.",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#F5F5F5",
-  "theme_color": "#A0D2EB",
   "orientation": "portrait-primary",
   "id": "/?source=pwa",
+  "background_color": "#A0D2EB",
+  "theme_color": "#A0D2EB",
   "icons": [
     {
       "src": "https://storage.googleapis.com/material-design-icons/v4/png/black/android/192dp/1x/baseline_android_black_48dp.png",
@@ -19,7 +19,21 @@
       "src": "https://storage.googleapis.com/material-design-icons/v4/png/black/android/512dp/1x/baseline_android_black_48dp.png",
       "type": "image/png",
       "sizes": "512x512",
-      "purpose": "maskable"
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "https://picsum.photos/seed/hck-shot1/540/720",
+      "type": "image/jpeg",
+      "sizes": "540x720",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "https://picsum.photos/seed/hck-shot2/720/540",
+      "type": "image/jpeg",
+      "sizes": "720x540",
+      "form_factor": "wide"
     }
   ]
 }
