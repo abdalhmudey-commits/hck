@@ -26,9 +26,9 @@ export const metadata: Metadata = {
   },
   manifest: `${BASE_PATH}/manifest.json`,
   icons: {
-    icon: `${BASE_PATH}/favicon.ico`,
+    icon: `${BASE_PATH}/icons/icon-192x192.png`,
     shortcut: `${BASE_PATH}/favicon.ico`,
-    apple: "/icons/icon-192x192.png",
+    apple: `${BASE_PATH}/icons/icon-192x192.png`,
   }
 };
 
