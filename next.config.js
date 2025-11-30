@@ -1,12 +1,12 @@
 
-const repoName = 'hck';
 const isProd = process.env.NODE_ENV === 'production';
+const repoName = 'hck';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
   basePath: isProd ? `/${repoName}` : '',
-  assetPrefix: isProd ? `/${repoName}/` : '',
+  assetPrefix: isProd ? `/${repoName}` : '',
   env: {
     NEXT_PUBLIC_BASE_PATH: isProd ? `/${repoName}` : '',
   },
@@ -32,7 +32,7 @@ const nextConfig = {
         pathname: '/**',
       },
       {
-        protocol: 'https' ,
+        protocol: 'https',
         hostname: 'picsum.photos',
         port: '',
         pathname: '/**',
